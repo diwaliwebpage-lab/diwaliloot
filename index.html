@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>✨ शुभ दीपावली ✨</title>
+
+  <!-- WHATSAPP THUMBNAIL SECRET SETTINGS -->
+  <meta property="og:title" content="आपके लिए एक सरप्राइज गिफ्ट! 🎁" />
+  <meta property="og:description" content="जल्दी से इस लिंक को ओपन करके अपना सीक्रेट गिफ्ट देखें..." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://i.ibb.co/YBysrK61/Screenshot-2026-11-04-15-42-50-97.jpg" />
+  <meta property="og:image:secure_url" content="https://i.ibb.co/YBysrK61/Screenshot-2026-11-04-15-42-50-97.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="720" />
+  <meta property="og:image:height" content="381" />
+  <meta name="twitter:image" content="https://i.ibb.co/YBysrK61/Screenshot-2026-11-04-15-42-50-97.jpg" />
+  <!-- END WHATSAPP THUMBNAIL SETTINGS -->
+
+  <!-- Google Fonts: Noto Sans Devanagari, Poppins, and Laila for HopWeb & WebViews -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Laila:wght@600;700&family=Noto+Sans+Devanagari:wght@500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep-maroon: #4a0404;
+      --bg-dark-red: #1f0101;
+      --warm-gold: #ffd700;
+      --warm-orange: #ff8c00;
+      --light-gold: #ffeb73;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: 'Noto Sans Devanagari', 'Poppins', 'Laila', sans-serif;
+      background: radial-gradient(circle at 50% 30%, #7a0808 0%, var(--bg-deep-maroon) 50%, var(--bg-dark-red) 100%);
+      color: #ffffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    #celebration-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Main Container with 80px bottom space for the fixed ad slot */
+    #celebration-screen {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 8px 14px 80px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-hero-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 0 1 auto;
+      margin-top: 4px;
+    }
+
+    .happy-diwali-banner {
+      padding: 6px 26px;
+      margin-bottom: 10px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #c71585 0%, #ff4500 50%, #ffd700 100%);
+      box-shadow: 0 4px 15px rgba(255, 140, 0, 0.6);
+      border: 1.5px solid var(--light-gold);
+    }
+
+    .happy-diwali-text {
+      font-family: 'Laila', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(1.4rem, 5.5vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .laxmi-image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1);    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+      50%      { transform: scale(1.04); box-shadow: 0 4px 25px rgba(255, 215, 0, 0.75); }
+    }
+
+    .festive-img {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      max-height: 170px;
+      min-height: 60px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 2px solid var(--warm-gold);
+      animation: softPulse 3s infinite ease-in-out;
+    }
+
+    /* Shown only if no image file could be loaded */
+    .img-fallback {
+      display: none;
+      font-size: 90px;
+      line-height: 1;
+      filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.8));
+      animation: softPulse 3s infinite ease-in-out;
+    }
+
+    .greeting-box {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1.5px solid var(--warm-gold);
+      text-align: center;
+      margin: 6px 0;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    }
+
+    .greeting-text {
+      font-size: clamp(0.95rem, 3.8vw, 1.2rem);
+      line-height: 1.4;
+      font-weight: 600;
+      color: #fffdf5;
+      word-wrap: break-word;
+    }
+
+    #display-name {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--warm-gold);
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+
+    .controls-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 10px 14px;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      border: 1.5px solid var(--warm-gold);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    }
+
+    .neon-input {
+      width: 100%;
+      background: rgba(30, 0, 0, 0.85);
+      color: #ffffff;
+      border: 1.5px solid var(--warm-orange);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 16px; /* 16px stops mobile browsers zooming on focus */
+      outline: none;
+      user-select: text;
+      -webkit-user-select: text;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .neon-input:focus {
+      border-color: var(--warm-gold);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Image button: 🧨 दिवाली शॉपिंग धमाका 🧨 */
+    .gift-img-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 40px;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .gift-img-btn img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 84px; /* button bada chahiye to ye number badhao */
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    /* Slow light sweep that repeats */
+    .gift-img-btn .shine {
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      animation: shineSweep 3.2s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes shineSweep {
+      0%, 55% { left: -60%; }
+      100%    { left: 130%; }
+    }
+
+    /* Little twinkling stars */
+    .gift-img-btn .spark {
+      position: absolute;
+      font-size: 14px;
+      opacity: 0;
+      animation: twinkle 2.4s infinite ease-in-out;
+      pointer-events: none;
+    }
+    .gift-img-btn .s1 { top: 8%;  left: 22%; animation-delay: 0s; }
+    .gift-img-btn .s2 { top: 55%; left: 48%; animation-delay: 0.8s; }
+    .gift-img-btn .s3 { top: 12%; right: 20%; animation-delay: 1.6s; }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.4); }
+      50%      { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Flash when tapped */
+    .gift-img-btn.flash img {
+      animation: tapFlash 0.35s ease-out;
+    }
+
+    @keyframes tapFlash {
+      0%   { filter: brightness(1);   transform: scale(1); }
+      40%  { filter: brightness(2.2); transform: scale(1.06); }
+      100% { filter: brightness(1);   transform: scale(1); }
+    }
+
+    /* ===== WhatsApp image button ===== */
+    .wa-img-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wa-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      line-height: 0;
+    }
+
+    .wa-wrap img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 84px; /* button bada chahiye to ye number badhao */
+      object-fit: contain;
+      pointer-events: none;
+      /* green glow dheere-dheere pulse + halka bounce */
+      animation: waGlow 3s infinite ease-in-out, waBounce 2.8s infinite ease-in-out;
+    }
+
+    @keyframes waGlow {
+      0%, 100% { filter: drop-shadow(0 0 3px rgba(37, 211, 102, 0.30)); }
+      50%      { filter: drop-shadow(0 0 13px rgba(37, 211, 102, 0.85)); }
+    }
+
+    @keyframes waBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-2px) scale(1.025); }
+    }
+
+    /* Clip layer: shine + ripple stay inside the button */
+    .wa-clip {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 40px;
+      pointer-events: none;
+    }
+
+    /* Subtle shine: ~3 sec me ek baar */
+    .wa-clip .wa-shine {
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.28) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      animation: waShine 3s infinite ease-in-out;
+    }
+
+    @keyframes waShine {
+      0%, 60% { left: -60%; }
+      100%    { left: 130%; }
+    }
+
+    /* Tap ripple */
+    .wa-ripple {
+      position: absolute;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      background: rgba(255, 255, 255, 0.55);
+      transform: scale(0);
+      animation: waRipple 0.6s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes waRipple {
+      to { transform: scale(18); opacity: 0; }
+    }
+
+    /* Golden sparkles around the button (kabhi-kabhi) */
+    .wa-spark {
+      position: absolute;
+      color: var(--warm-gold);
+      font-size: 13px;
+      line-height: 1;
+      opacity: 0;
+      text-shadow: 0 0 6px rgba(255, 215, 0, 0.9);
+      animation: waTwinkle 5s infinite ease-in-out;
+      pointer-events: none;
+    }
+    .wa-spark.k1 { top: -6px;    left: 12%;  animation-delay: 0s; }
+    .wa-spark.k2 { top: -8px;    right: 14%; animation-delay: 1.7s; }
+    .wa-spark.k3 { bottom: -6px; left: 28%;  animation-delay: 3.1s; }
+    .wa-spark.k4 { bottom: -7px; right: 24%; animation-delay: 0.9s; }
+    .wa-spark.k5 { top: 38%;     left: -7px; animation-delay: 2.4s; }
+    .wa-spark.k6 { top: 42%;     right: -7px; animation-delay: 4s; }
+
+    @keyframes waTwinkle {
+      0%, 70%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+      80%           { opacity: 1; transform: scale(1.2) rotate(20deg); }
+      90%           { opacity: 0.4; transform: scale(0.8) rotate(40deg); }
+    }
+
+    /* 2-3 Diwali sparkles that fly out on tap */
+    .wa-burst {
+      position: absolute;
+      font-size: 16px;
+      line-height: 1;
+      pointer-events: none;
+      z-index: 5;
+      animation: waBurst 0.75s ease-out forwards;
+    }
+
+    @keyframes waBurst {
+      0%   { opacity: 1; transform: translate(0, 0) scale(0.6); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.3); }
+    }
+
+    /* Fixed Bottom Adsterra Slot */
+    .adsterra-bottom-slot {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ===== RGB colour-changing background ===== */
+    #rgb-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 30%, #b3123a 0%, #5c0a24 50%, #1f0510 100%);
+      animation: rgbHue 18s linear infinite;
+    }
+
+    @keyframes rgbHue {
+      from { filter: hue-rotate(0deg); }
+      to   { filter: hue-rotate(360deg); }
+    }
+
+    /* ===== Slowly falling crackers (few, slow motion) ===== */
+    #crackers {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .cracker {
+      position: absolute;
+      top: -12vh;
+      line-height: 1;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(255, 200, 80, 0.55));
+      animation: crackerFall linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes crackerFall {
+      0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+      25%  { transform: translate3d(var(--sway), 28vh, 0) rotate(calc(var(--spin) * 0.25)); }
+      50%  { transform: translate3d(calc(var(--sway) * -1), 56vh, 0) rotate(calc(var(--spin) * 0.5)); }
+      75%  { transform: translate3d(var(--sway), 84vh, 0) rotate(calc(var(--spin) * 0.75)); }
+      100% { transform: translate3d(0, 120vh, 0) rotate(var(--spin)); }
+    }
+
+    /* ===== RGB name text (display name + typing box) ===== */
+    @keyframes rgbText {
+      0%   { color: hsl(0, 100%, 62%); }
+      17%  { color: hsl(60, 100%, 58%); }
+      33%  { color: hsl(120, 100%, 58%); }
+      50%  { color: hsl(180, 100%, 58%); }
+      67%  { color: hsl(240, 100%, 68%); }
+      83%  { color: hsl(300, 100%, 66%); }
+      100% { color: hsl(360, 100%, 62%); }
+    }
+
+    #display-name {
+      animation: rgbText 5s linear infinite;
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    .neon-input {
+      animation: rgbText 5s linear infinite;
+      caret-color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Text fallback if the WhatsApp image cannot load */
+    .wa-wrap.wa-text-mode {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 46px;
+      line-height: 1.2;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      border: 1px solid #7bffb1;
+      animation: waGlowBox 3s infinite ease-in-out;
+    }
+    .wa-text-label { color: #fff; font-weight: 700; font-size: 1.05rem; }
+    @keyframes waGlowBox {
+      0%, 100% { box-shadow: 0 0 4px rgba(37, 211, 102, 0.3); }
+      50%      { box-shadow: 0 0 14px rgba(37, 211, 102, 0.85); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="rgb-bg"></div>
+  <div id="crackers"></div>
+
+  <canvas id="celebration-canvas"></canvas>
+
+  <main id="celebration-screen">
+    <div class="top-hero-section">
+      <div class="happy-diwali-banner">
+        <div class="happy-diwali-text">शुभ दीपावली</div>
+      </div>
+      <div class="laxmi-image-wrapper">
+        <!-- Your own GIF (same folder as this page) -->
+        <img id="laxmi-img" src="image_search_1793688799924.gif" class="festive-img" alt="">
+        <div id="img-fallback" class="img-fallback">🪔</div>
+      </div>
+    </div>
+
+    <div class="greeting-box">
+      <p class="greeting-text">
+        <span id="display-name">आपका नाम</span> की ओर से:<br/>
+        आपको दीपावली की बहुत-बहुत बधाई।
+      </p>
+    </div>
+
+    <div class="controls-section">
+      <input type="text" id="name-input" class="neon-input" placeholder="यहाँ अपना नाम लिखें" maxlength="40" autocomplete="off" />
+
+      <!-- AMAZON AFFILIATE LINK -->
+      <!-- 🔥🔥 PASTE YOUR AMAZON AFFILIATE LINK BELOW (replace YOUR_AFFILIATE_LINK) 🔥🔥 -->
+      <a href="YOUR_AFFILIATE_LINK" id="gift-btn" class="gift-img-btn" aria-label="दिवाली शॉपिंग धमाका">
+        <img id="gift-img" src="https://i.ibb.co/6RDHwyDb/diwali-pnh.png" alt="🧨 दिवाली शॉपिंग धमाका 🧨">
+        <span class="shine"></span>
+        <span class="spark s1">✨</span>
+        <span class="spark s2">✨</span>
+        <span class="spark s3">✨</span>
+      </a>
+
+      <!-- WhatsApp share button (image) -->
+      <a href="#" target="_top" id="whatsapp-share-btn" class="wa-img-btn" aria-label="WhatsApp पर शेयर करें">
+        <span class="wa-wrap" id="wa-wrap">
+          <img id="wa-img" src="https://i.ibb.co/8D7Nyk9G/file-00000000af548211bd75b445daf5fcc9-removebg-preview.png" alt="WhatsApp पर शेयर करें">
+          <span class="wa-clip" id="wa-clip"><span class="wa-shine"></span></span>
+          <span class="wa-spark k1">✦</span>
+          <span class="wa-spark k2">✦</span>
+          <span class="wa-spark k3">✦</span>
+          <span class="wa-spark k4">✦</span>
+          <span class="wa-spark k5">✦</span>
+          <span class="wa-spark k6">✦</span>
+        </span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Absolute Fixed Container for Adsterra Bottom Slot -->
+  <div class="adsterra-bottom-slot">
+    <!-- ADSTERRA -->
+    <!-- PUT ADSTERRA BOTTOM BANNER HERE (MAX-WIDTH 468px) -->
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------
+         SETTINGS
+         SHARE_BASE_URL: paste your ONLINE page address here, e.g.
+         'https://yoursite.com/diwali.html'
+         Leave empty to use the address currently open. NOTE: if you
+         test on a local/phone-only server, friends cannot open that
+         link, so use your published address here.
+         ------------------------------------------------------------ */
+      const SHARE_BASE_URL = '';
+
+      const DEFAULT_NAME = 'आपका नाम';
+      const displayNameEl = document.getElementById('display-name');
+      const nameInputEl = document.getElementById('name-input');
+      const whatsappBtn = document.getElementById('whatsapp-share-btn');
+
+      /* ------------------------------------------------------------
+         LAXMI IMAGE: file name is image_search_1793688799924.gif
+         Tries your own file first, then online backups,
+         then a 🪔 stand-in so it never breaks.
+         ------------------------------------------------------------ */
+      const imgEl = document.getElementById('laxmi-img');
+      const imgFallbackEl = document.getElementById('img-fallback');
+      const imgCandidates = [
+        'image_search_1793688799924.gif',
+        'https://i.ibb.co/vx9K98Zv/laxmi.gif',
+        'https://c.tenor.com/V9XmN0D-0lUAAAAj/happy-diwali.gif'
+      ];
+      let imgTry = 0;
+      function loadNextImage() {
+        if (imgTry >= imgCandidates.length) {
+          imgEl.style.display = 'none';
+          imgFallbackEl.style.display = 'block';
+          return;
+        }
+        imgEl.src = imgCandidates[imgTry];
+        imgTry++;
+      }
+      imgEl.addEventListener('error', loadNextImage);
+      loadNextImage();
+
+      /* ------------------------------------------------------------
+         NAME from URL (?name=...) or from the input box
+         ------------------------------------------------------------ */
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramName = urlParams.get('name') ? urlParams.get('name').trim() : '';
+
+      displayNameEl.textContent = paramName || DEFAULT_NAME;
+      if (paramName) nameInputEl.value = paramName;
+
+      /* ------------------------------------------------------------
+         WHATSAPP SHARE: https://wa.me link updated on every keystroke
+         ------------------------------------------------------------ */
+      function updateWhatsAppHref() {
+        // Name: typed name first, else ?name= from the URL. Empty => no share link.
+        let finalName = nameInputEl.value.trim() || paramName;
+        if (!finalName) {
+          whatsappBtn.href = '#';
+          return '';
+        }
+
+        // SHARE_URL = origin + pathname + "?name=" + encodedName
+        // (file:/// ya local testing me kaam ka link nahi banta, isliye
+        //  SHARE_BASE_URL use hota hai; wo bhi khali ho to placeholder)
+        let baseUrl;
+        if (SHARE_BASE_URL) {
+          baseUrl = SHARE_BASE_URL.split('?')[0].split('#')[0];
+        } else if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+          baseUrl = window.location.origin + window.location.pathname;
+        } else {
+          baseUrl = 'https://YOUR-WEBSITE-LINK/';
+        }
+        let shareUrl = baseUrl + '?name=' + encodeURIComponent(finalName);
+
+        // Emojis as code points: encoding ya WebView issue me bhi sahi dikhenge
+        const E_ALERT = String.fromCodePoint(0x1F6A8);
+        const E_GIFT  = String.fromCodePoint(0x1F381);
+        const E_DOWN  = String.fromCodePoint(0x1F447);
+        const E_RIGHT = String.fromCodePoint(0x1F449);
+
+        let messageStr = E_ALERT + " जल्दी देखो! " + E_ALERT + "\n\n" + finalName + " ने आपके लिए दिवाली का एक बहुत ही सीक्रेट गिफ्ट भेजा है " + E_GIFT + E_DOWN + "\n\nयहाँ क्लिक करें " + E_RIGHT + " " + shareUrl;
+
+        let waLink = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageStr);
+        whatsappBtn.href = waLink;                 // dynamic anchor href
+        whatsappBtn.dataset.fallback = "https://wa.me/?text=" + encodeURIComponent(messageStr);
+        return finalName;
+      }
+
+      /* ------------------------------------------------------------
+         INPUT: live name + share link update
+         ------------------------------------------------------------ */
+      nameInputEl.addEventListener('input', function () {
+        const v = nameInputEl.value.trim();
+        displayNameEl.textContent = v || paramName || DEFAULT_NAME;
+        updateWhatsAppHref();
+      });
+      updateWhatsAppHref();
+
+      /* ------------------------------------------------------------
+         WHATSAPP IMAGE FALLBACK (text button if image fails)
+         ------------------------------------------------------------ */
+      const waImg = document.getElementById('wa-img');
+      const waWrap = document.getElementById('wa-wrap');
+      waImg.addEventListener('error', function () {
+        waImg.style.display = 'none';
+        waWrap.classList.add('wa-text-mode');
+        const label = document.createElement('span');
+        label.className = 'wa-text-label';
+        label.textContent = 'WhatsApp पर शेयर करें';
+        waWrap.appendChild(label);
+      });
+
+      /* ------------------------------------------------------------
+         WHATSAPP BUTTON TAP: ripple + sparkles + open WhatsApp
+         ------------------------------------------------------------ */
+      const waClip = document.getElementById('wa-clip');
+      whatsappBtn.addEventListener('click', function (e) {
+        const name = updateWhatsAppHref();
+        if (!name) {
+          e.preventDefault();
+          nameInputEl.focus();
+          nameInputEl.placeholder = 'पहले अपना नाम लिखें 👆';
+          return;
+        }
+
+        const rect = waWrap.getBoundingClientRect();
+        const x = (e.clientX || rect.left + rect.width / 2) - rect.left;
+        const y = (e.clientY || rect.top + rect.height / 2) - rect.top;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'wa-ripple';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        waClip.appendChild(ripple);
+        setTimeout(function () { ripple.remove(); }, 700);
+
+        const icons = ['✨', '🪔', '🎆'];
+        for (let i = 0; i < 3; i++) {
+          const b = document.createElement('span');
+          b.className = 'wa-burst';
+          b.textContent = icons[i];
+          b.style.left = x + 'px';
+          b.style.top = y + 'px';
+          b.style.setProperty('--dx', (Math.random() * 90 - 45) + 'px');
+          b.style.setProperty('--dy', (-20 - Math.random() * 40) + 'px');
+          waWrap.appendChild(b);
+          setTimeout(function () { b.remove(); }, 800);
+        }
+
+        launchBurst(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2);
+
+        // If the WhatsApp app did not open, fall back to the web link
+        const fb = whatsappBtn.dataset.fallback;
+        if (fb) {
+          setTimeout(function () {
+            if (!document.hidden) window.location.href = fb;
+          }, 1500);
+        }
+      });
+
+      /* ------------------------------------------------------------
+         GIFT BUTTON TAP: flash
+         ------------------------------------------------------------ */
+      const giftBtn = document.getElementById('gift-btn');
+      giftBtn.addEventListener('click', function () {
+        giftBtn.classList.remove('flash');
+        void giftBtn.offsetWidth;
+        giftBtn.classList.add('flash');
+        setTimeout(function () { giftBtn.classList.remove('flash'); }, 400);
+      });
+
+      /* ------------------------------------------------------------
+         FALLING CRACKERS (few, slow)
+         ------------------------------------------------------------ */
+      const crackersEl = document.getElementById('crackers');
+      const crackerIcons = ['🪔', '🎆', '🧨', '✨', '🎇', '🪔'];
+      for (let i = 0; i < 9; i++) {
+        const c = document.createElement('span');
+        c.className = 'cracker';
+        c.textContent = crackerIcons[i % crackerIcons.length];
+        c.style.left = (Math.random() * 92) + 'vw';
+        c.style.fontSize = (18 + Math.random() * 16) + 'px';
+        c.style.animationDuration = (16 + Math.random() * 12) + 's';
+        c.style.animationDelay = (-Math.random() * 20) + 's';
+        c.style.setProperty('--sway', (Math.random() * 30 + 10) + 'px');
+        c.style.setProperty('--spin', (Math.random() * 360 - 180) + 'deg');
+        crackersEl.appendChild(c);
+      }
+
+      /* ------------------------------------------------------------
+         CANVAS: fireworks sparkles (auto + on tap)
+         ------------------------------------------------------------ */
+      const canvas = document.getElementById('celebration-canvas');
+      const ctx = canvas.getContext('2d');
+      let W = 0, H = 0;
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particles = [];
+      function launchBurst(x, y) {
+        const hue = Math.floor(Math.random() * 360);
+        for (let i = 0; i < 28; i++) {
+          const a = (Math.PI * 2 * i) / 28;
+          const s = 1.2 + Math.random() * 2.4;
+          particles.push({
+            x: x, y: y,
+            vx: Math.cos(a) * s,
+            vy: Math.sin(a) * s,
+            life: 1,
+            hue: hue + Math.random() * 40
+          });
+        }
+      }
+
+      function frame() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.03;
+          p.life -= 0.012;
+          if (p.life <= 0) { particles.splice(i, 1); continue; }
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = 'hsl(' + p.hue + ', 100%, 65%)';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      setInterval(function () {
+        launchBurst(W * (0.15 + Math.random() * 0.7), H * (0.1 + Math.random() * 0.35));
+      }, 2600);
+
+      document.addEventListener('touchstart', function (e) {
+        const t = e.touches[0];
+        if (t) launchBurst(t.clientX, t.clientY);
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
