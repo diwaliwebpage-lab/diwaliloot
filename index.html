@@ -8,7 +8,7 @@
   <!-- STATUS PANEL (test ke liye): sab OK ho to 5 sec baad khud hat jata hai. Hamesha ke liye band karna ho to DEBUG_ALWAYS = false -->
   <script>
   (function () {
-    var DEBUG_ALWAYS = true;
+    var DEBUG_ALWAYS = false;
     var dbg = DEBUG_ALWAYS || /[?&]debug=1/.test(location.search), box = null, hasErr = false;
     function show(t) {
       if (!dbg) { if (/ERROR|FAIL/.test(t)) hasErr = true; return; }
@@ -143,8 +143,8 @@
     }
 
     @keyframes softPulse {
-      0%, 100% { transform: scale(1);    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
-      50%      { transform: scale(1.04); box-shadow: 0 4px 25px rgba(255, 215, 0, 0.75); }
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
     }
 
     .festive-img {
@@ -158,6 +158,7 @@
       object-fit: contain;
       border-radius: 12px;
       border: 2px solid var(--warm-gold);
+      box-shadow: 0 4px 22px rgba(255, 215, 0, 0.6);
       animation: softPulse 3s infinite ease-in-out;
     }
 
@@ -255,18 +256,18 @@
     .gift-img-btn .shine {
       position: absolute;
       top: 0;
-      left: -60%;
+      left: 0;
       width: 40%;
       height: 100%;
       background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
-      transform: skewX(-20deg);
+      transform: translateX(-150%) skewX(-20deg);
       animation: shineSweep 3.2s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes shineSweep {
-      0%, 55% { left: -60%; }
-      100%    { left: 130%; }
+      0%, 55% { transform: translateX(-150%) skewX(-20deg); }
+      100%    { transform: translateX(325%) skewX(-20deg); }
     }
 
     /* Little twinkling stars */
@@ -309,6 +310,7 @@
 
     .wa-wrap {
       position: relative;
+      isolation: isolate;
       display: inline-block;
       max-width: 100%;
       line-height: 0;
@@ -322,7 +324,23 @@
       object-fit: contain;
       pointer-events: none;
       /* green glow dheere-dheere pulse + halka bounce */
-      animation: waGlow 3s infinite ease-in-out, waBounce 2.8s infinite ease-in-out;
+      animation: waBounce 2.8s infinite ease-in-out;
+    }
+
+    .wa-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 40px;
+      z-index: -1;
+      box-shadow: 0 0 16px 5px rgba(37, 211, 102, 0.85);
+      opacity: 0.3;
+      animation: waGlowOp 3s infinite ease-in-out;
+      pointer-events: none;
+    }
+    @keyframes waGlowOp {
+      0%, 100% { opacity: 0.25; }
+      50%      { opacity: 1; }
     }
 
     @keyframes waGlow {
@@ -348,17 +366,17 @@
     .wa-clip .wa-shine {
       position: absolute;
       top: 0;
-      left: -60%;
+      left: 0;
       width: 35%;
       height: 100%;
       background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.28) 50%, transparent 100%);
-      transform: skewX(-20deg);
+      transform: translateX(-171%) skewX(-20deg);
       animation: waShine 3s infinite ease-in-out;
     }
 
     @keyframes waShine {
-      0%, 60% { left: -60%; }
-      100%    { left: 130%; }
+      0%, 60% { transform: translateX(-171%) skewX(-20deg); }
+      100%    { transform: translateX(371%) skewX(-20deg); }
     }
 
     /* Tap ripple */
@@ -438,12 +456,27 @@
       z-index: 0;
       pointer-events: none;
       background: radial-gradient(circle at 50% 30%, #b3123a 0%, #5c0a24 50%, #1f0510 100%);
-      animation: rgbHue 18s linear infinite;
     }
-
-    @keyframes rgbHue {
-      from { filter: hue-rotate(0deg); }
-      to   { filter: hue-rotate(360deg); }
+    #rgb-bg::before, #rgb-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      will-change: opacity;
+    }
+    #rgb-bg::before {
+      background: radial-gradient(circle at 50% 30%, #12a34a 0%, #0a4a2a 50%, #031a0e 100%);
+      animation: bgFade 18s ease-in-out infinite;
+    }
+    #rgb-bg::after {
+      background: radial-gradient(circle at 50% 30%, #2a4fd6 0%, #14226b 50%, #070b24 100%);
+      animation: bgFade 18s ease-in-out infinite;
+      animation-delay: -9s;
+    }
+    @keyframes bgFade {
+      0%        { opacity: 0; }
+      15%, 30%  { opacity: 1; }
+      40%, 100% { opacity: 0; }
     }
 
     /* ===== Slowly falling crackers (few, slow motion) ===== */
@@ -460,7 +493,6 @@
       top: -12vh;
       line-height: 1;
       opacity: 0.9;
-      filter: drop-shadow(0 0 6px rgba(255, 200, 80, 0.55));
       animation: crackerFall linear infinite;
       will-change: transform;
     }
@@ -555,7 +587,7 @@
       </a>
 
       <!-- WhatsApp share button (image) -->
-      <a href="#" target="_top" id="whatsapp-share-btn" class="wa-img-btn" aria-label="WhatsApp पर शेयर करें" onclick="var i=document.getElementById('name-input'),n=i.value.replace(/^\s+|\s+$/g,'');if(!n){i.focus();return false;}var u=location.protocol+'//'+location.host+location.pathname+'?name='+encodeURIComponent(n);location.href='https://wa.me/?text='+encodeURIComponent('शुभ दीपावली! '+n+' की ओर से आपको दीपावली की बहुत-बहुत बधाई।\n\n'+u);return false;">
+      <a href="#" target="_top" id="whatsapp-share-btn" class="wa-img-btn" aria-label="WhatsApp पर शेयर करें" onclick="var i=document.getElementById('name-input'),n=i.value.replace(/^\s+|\s+$/g,'');if(!n){i.focus();return false;}var u=location.protocol+'//'+location.host+location.pathname+'?name='+encodeURIComponent(n);location.href='https://wa.me/?text='+encodeURIComponent('\uD83D\uDEA8 जल्दी देखो! \uD83D\uDEA8\n\n'+n+' ने आपके लिए दिवाली का एक बहुत ही सीक्रेट गिफ्ट भेजा है \uD83C\uDF81\uD83D\uDC47\n\nयहाँ क्लिक करें \uD83D\uDC49 '+u);return false;">
         <span class="wa-wrap" id="wa-wrap">
           <img id="wa-img" src="https://i.ibb.co/8D7Nyk9G/file-00000000af548211bd75b445daf5fcc9-removebg-preview.png" alt="WhatsApp पर शेयर करें">
           <span class="wa-clip" id="wa-clip"><span class="wa-shine"></span></span>
@@ -570,19 +602,6 @@
     </div>
   </main>
 
-  <!-- Absolute Fixed Container for Adsterra Bottom Banner (320x50) -->
-  <div class="adsterra-bottom-slot">
-    <script>
-      atOptions = {
-        'key' : '8f946964af90e51023803e9d96c6cd2c',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
-    </script>
-    <script src="https://bicea.org/22/8f946964af90e51023803e9d96c6cd2c"></script>
-  </div>
 
   <!-- 1) CORE: naam + WhatsApp share (chhota, ES5, kisi aur code par depend nahi) -->
   <script>
@@ -599,16 +618,4 @@
       wa.onclick = null;
       var m = location.search.match(/[?&]name=([^&]*)/);
       if (m) {
-        try { paramName = decodeURIComponent(m[1].replace(/\+/g, ' ')).replace(/^\s+|\s+$/g, ''); }
-        catch (e1) { paramName = m[1]; }
-      }
-      function getName() { return (nameInput.value || '').replace(/^\s+|\s+$/g, '') || paramName; }
-      function buildLink() {
-        var n = getName();
-        if (!n) return '';
-        var base;
-        if (SHARE_BASE_URL) base = SHARE_BASE_URL.split('?')[0].split('#')[0];
-        else if (location.protocol === 'http:' || location.protocol === 'https:') base = location.protocol + '//' + location.host + location.pathname;
-        else base = 'https://YOUR-WEBSITE-LINK/';
-        var shareUrl = base + '?name=' + encodeURIComponent(n);
-        var m
+        try { paramName = decodeURIComponent(m[1].replace(/\+/g, ' ')).replace(/^\s+|\s+$/g, 
