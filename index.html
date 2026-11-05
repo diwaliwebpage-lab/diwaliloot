@@ -387,15 +387,15 @@
       100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.3); }
     }
 
-    /* Fixed Bottom Adsterra Slot */
+    /* Fixed Bottom Adsterra Banner Slot (320x50) */
     .adsterra-bottom-slot {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 60px;
+      height: 50px;
       text-align: center;
-      z-index: 100;
+      z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -540,10 +540,18 @@
     </div>
   </main>
 
-  <!-- Absolute Fixed Container for Adsterra Bottom Slot -->
+  <!-- Absolute Fixed Container for Adsterra Bottom Banner (320x50) -->
   <div class="adsterra-bottom-slot">
-    <!-- ADSTERRA -->
-    <!-- PUT ADSTERRA BOTTOM BANNER HERE (MAX-WIDTH 468px) -->
+    <script>
+      atOptions = {
+        'key' : '8f946964af90e51023803e9d96c6cd2c',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script src="https://bicea.org/22/8f946964af90e51023803e9d96c6cd2c"></script>
   </div>
 
   <script>
@@ -616,190 +624,8 @@
         let baseUrl;
         if (SHARE_BASE_URL) {
           baseUrl = SHARE_BASE_URL.split('?')[0].split('#')[0];
-        } else if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-          baseUrl = window.location.origin + window.location.pathname;
-        } else {
-          baseUrl = 'https://YOUR-WEBSITE-LINK/';
-        }
-        let shareUrl = baseUrl + '?name=' + encodeURIComponent(finalName);
+        } else if (window.location.protocol === 'http:' || window.location.p
+      
 
-        // Emojis as code points: encoding ya WebView issue me bhi sahi dikhenge
-        const E_ALERT = String.fromCodePoint(0x1F6A8);
-        const E_GIFT  = String.fromCodePoint(0x1F381);
-        const E_DOWN  = String.fromCodePoint(0x1F447);
-        const E_RIGHT = String.fromCodePoint(0x1F449);
-
-        let messageStr = E_ALERT + " जल्दी देखो! " + E_ALERT + "\n\n" + finalName + " ने आपके लिए दिवाली का एक बहुत ही सीक्रेट गिफ्ट भेजा है " + E_GIFT + E_DOWN + "\n\nयहाँ क्लिक करें " + E_RIGHT + " " + shareUrl;
-
-        let waLink = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageStr);
-        whatsappBtn.href = waLink;                 // dynamic anchor href
-        whatsappBtn.dataset.fallback = "https://wa.me/?text=" + encodeURIComponent(messageStr);
-        return finalName;
-      }
-
-      /* ------------------------------------------------------------
-         INPUT: live name + share link update
-         ------------------------------------------------------------ */
-      nameInputEl.addEventListener('input', function () {
-        const v = nameInputEl.value.trim();
-        displayNameEl.textContent = v || paramName || DEFAULT_NAME;
-        updateWhatsAppHref();
-      });
-      updateWhatsAppHref();
-
-      /* ------------------------------------------------------------
-         WHATSAPP IMAGE FALLBACK (text button if image fails)
-         ------------------------------------------------------------ */
-      const waImg = document.getElementById('wa-img');
-      const waWrap = document.getElementById('wa-wrap');
-      waImg.addEventListener('error', function () {
-        waImg.style.display = 'none';
-        waWrap.classList.add('wa-text-mode');
-        const label = document.createElement('span');
-        label.className = 'wa-text-label';
-        label.textContent = 'WhatsApp पर शेयर करें';
-        waWrap.appendChild(label);
-      });
-
-      /* ------------------------------------------------------------
-         WHATSAPP BUTTON TAP: ripple + sparkles + open WhatsApp
-         ------------------------------------------------------------ */
-      const waClip = document.getElementById('wa-clip');
-      whatsappBtn.addEventListener('click', function (e) {
-        const name = updateWhatsAppHref();
-        if (!name) {
-          e.preventDefault();
-          nameInputEl.focus();
-          nameInputEl.placeholder = 'पहले अपना नाम लिखें 👆';
-          return;
-        }
-
-        const rect = waWrap.getBoundingClientRect();
-        const x = (e.clientX || rect.left + rect.width / 2) - rect.left;
-        const y = (e.clientY || rect.top + rect.height / 2) - rect.top;
-
-        const ripple = document.createElement('span');
-        ripple.className = 'wa-ripple';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        waClip.appendChild(ripple);
-        setTimeout(function () { ripple.remove(); }, 700);
-
-        const icons = ['✨', '🪔', '🎆'];
-        for (let i = 0; i < 3; i++) {
-          const b = document.createElement('span');
-          b.className = 'wa-burst';
-          b.textContent = icons[i];
-          b.style.left = x + 'px';
-          b.style.top = y + 'px';
-          b.style.setProperty('--dx', (Math.random() * 90 - 45) + 'px');
-          b.style.setProperty('--dy', (-20 - Math.random() * 40) + 'px');
-          waWrap.appendChild(b);
-          setTimeout(function () { b.remove(); }, 800);
-        }
-
-        launchBurst(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2);
-
-        // If the WhatsApp app did not open, fall back to the web link
-        const fb = whatsappBtn.dataset.fallback;
-        if (fb) {
-          setTimeout(function () {
-            if (!document.hidden) window.location.href = fb;
-          }, 1500);
-        }
-      });
-
-      /* ------------------------------------------------------------
-         GIFT BUTTON TAP: flash
-         ------------------------------------------------------------ */
-      const giftBtn = document.getElementById('gift-btn');
-      giftBtn.addEventListener('click', function () {
-        giftBtn.classList.remove('flash');
-        void giftBtn.offsetWidth;
-        giftBtn.classList.add('flash');
-        setTimeout(function () { giftBtn.classList.remove('flash'); }, 400);
-      });
-
-      /* ------------------------------------------------------------
-         FALLING CRACKERS (few, slow)
-         ------------------------------------------------------------ */
-      const crackersEl = document.getElementById('crackers');
-      const crackerIcons = ['🪔', '🎆', '🧨', '✨', '🎇', '🪔'];
-      for (let i = 0; i < 9; i++) {
-        const c = document.createElement('span');
-        c.className = 'cracker';
-        c.textContent = crackerIcons[i % crackerIcons.length];
-        c.style.left = (Math.random() * 92) + 'vw';
-        c.style.fontSize = (18 + Math.random() * 16) + 'px';
-        c.style.animationDuration = (16 + Math.random() * 12) + 's';
-        c.style.animationDelay = (-Math.random() * 20) + 's';
-        c.style.setProperty('--sway', (Math.random() * 30 + 10) + 'px');
-        c.style.setProperty('--spin', (Math.random() * 360 - 180) + 'deg');
-        crackersEl.appendChild(c);
-      }
-
-      /* ------------------------------------------------------------
-         CANVAS: fireworks sparkles (auto + on tap)
-         ------------------------------------------------------------ */
-      const canvas = document.getElementById('celebration-canvas');
-      const ctx = canvas.getContext('2d');
-      let W = 0, H = 0;
-      function resize() {
-        const dpr = window.devicePixelRatio || 1;
-        W = window.innerWidth;
-        H = window.innerHeight;
-        canvas.width = W * dpr;
-        canvas.height = H * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-      window.addEventListener('resize', resize);
-      resize();
-
-      const particles = [];
-      function launchBurst(x, y) {
-        const hue = Math.floor(Math.random() * 360);
-        for (let i = 0; i < 28; i++) {
-          const a = (Math.PI * 2 * i) / 28;
-          const s = 1.2 + Math.random() * 2.4;
-          particles.push({
-            x: x, y: y,
-            vx: Math.cos(a) * s,
-            vy: Math.sin(a) * s,
-            life: 1,
-            hue: hue + Math.random() * 40
-          });
-        }
-      }
-
-      function frame() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = particles.length - 1; i >= 0; i--) {
-          const p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.03;
-          p.life -= 0.012;
-          if (p.life <= 0) { particles.splice(i, 1); continue; }
-          ctx.globalAlpha = p.life;
-          ctx.fillStyle = 'hsl(' + p.hue + ', 100%, 65%)';
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-
-      setInterval(function () {
-        launchBurst(W * (0.15 + Math.random() * 0.7), H * (0.1 + Math.random() * 0.35));
-      }, 2600);
-
-      document.addEventListener('touchstart', function (e) {
-        const t = e.touches[0];
-        if (t) launchBurst(t.clientX, t.clientY);
-      }, { passive: true });
-    })();
-  </script>
-</body>
-</html> (Happy_diwai)
+    
+    
