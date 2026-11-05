@@ -1,119 +1,184 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>✨ शुभ दीपावली ✨</title>
 
+<!-- WHATSAPP PREVIEW -->
 <meta property="og:title" content="आपके लिए एक सरप्राइज गिफ्ट! 🎁">
 <meta property="og:description" content="जल्दी से अपना सीक्रेट गिफ्ट देखें!">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://i.ibb.co/YBysrK61/Screenshot-2026-11-04-15-42-50-97.jpg">
+<meta property="og:image:secure_url" content="https://i.ibb.co/YBysrK61/Screenshot-2026-11-04-15-42-50-97.jpg">
+<meta property="og:image:width" content="720">
+<meta property="og:image:height" content="381">
 
+<!-- GOOGLE FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Laila:wght@600;700&family=Noto+Sans+Devanagari:wght@500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
+<!-- ========================= -->
+<!-- ADSTERRA POPUNDER AD -->
+<!-- ========================= -->
+<script data-cfasync="false" src="https://afders.org/1/941948f6e99c104a0c4b6e9b5d510d91"></script>
+
+<!-- ========================= -->
+<!-- ADSTERRA SOCIAL BAR AD -->
+<!-- ========================= -->
+<script data-cfasync="false" src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
+
 <style>
+
 :root {
-  --gold:#ffd700;
-  --orange:#ff8c00;
+  --bg-deep-maroon:#4a0404;
+  --bg-dark-red:#1f0101;
+  --warm-gold:#ffd700;
+  --warm-orange:#ff8c00;
+  --light-gold:#ffeb73;
 }
 
 * {
   box-sizing:border-box;
   margin:0;
   padding:0;
+  user-select:none;
   -webkit-tap-highlight-color:transparent;
 }
 
 html,body {
   width:100%;
   min-height:100%;
-  background:#280202;
+  font-family:'Noto Sans Devanagari','Poppins','Laila',sans-serif;
+  background:radial-gradient(circle at 50% 30%,#7a0808,var(--bg-deep-maroon) 50%,var(--bg-dark-red));
   color:white;
-  font-family:'Noto Sans Devanagari',sans-serif;
 }
 
 body {
-  min-height:100vh;
   overflow-x:hidden;
-  background:radial-gradient(circle at 50% 25%,#a20d20,#4a0404 55%,#160000);
+  position:relative;
 }
+
+/* RGB BACKGROUND */
 
 #rgb-bg {
   position:fixed;
   inset:0;
   z-index:0;
   pointer-events:none;
-  background:radial-gradient(circle,#b3123a,#1f0510);
-  animation:colors 18s infinite alternate;
+  background:radial-gradient(circle at 50% 30%,#b3123a,#5c0a24,#1f0510);
 }
 
-@keyframes colors {
-  0% {filter:hue-rotate(0deg);}
-  50% {filter:hue-rotate(100deg);}
-  100% {filter:hue-rotate(220deg);}
+#rgb-bg::before,
+#rgb-bg::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:0;
 }
+
+#rgb-bg::before {
+  background:radial-gradient(circle at 50% 30%,#12a34a,#0a4a2a,#031a0e);
+  animation:bgFade 18s ease-in-out infinite;
+}
+
+#rgb-bg::after {
+  background:radial-gradient(circle at 50% 30%,#2a4fd6,#14226b,#070b24);
+  animation:bgFade 18s ease-in-out infinite;
+  animation-delay:-9s;
+}
+
+@keyframes bgFade {
+  0% {opacity:0;}
+  15%,30% {opacity:1;}
+  40%,100% {opacity:0;}
+}
+
+/* FALLING CRACKERS */
 
 #crackers {
   position:fixed;
   inset:0;
-  pointer-events:none;
-  overflow:hidden;
   z-index:2;
+  overflow:hidden;
+  pointer-events:none;
 }
 
 .cracker {
   position:absolute;
-  top:-30px;
-  animation:fall linear infinite;
+  top:-12vh;
+  line-height:1;
+  opacity:.9;
+  animation:crackerFall linear infinite;
 }
 
-@keyframes fall {
-  to {transform:translateY(110vh) rotate(600deg);}
+@keyframes crackerFall {
+  0% {transform:translateY(0) rotate(0deg);}
+  100% {transform:translateY(120vh) rotate(500deg);}
 }
+
+/* MAIN SCREEN */
 
 #celebration-screen {
   position:relative;
-  z-index:5;
+  z-index:10;
   width:100%;
   max-width:520px;
   min-height:100vh;
-  margin:auto;
-  padding:12px 14px 80px;
+  margin:0 auto;
+  padding:8px 14px 80px;
+  overflow-x:hidden;
   display:flex;
   flex-direction:column;
+  justify-content:space-between;
   align-items:center;
-  justify-content:space-around;
   gap:12px;
 }
+
+/* TOP SECTION */
 
 .top-hero-section {
   width:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
+  justify-content:center;
+  margin-top:4px;
 }
 
 .happy-diwali-banner {
-  padding:7px 28px;
-  margin:8px 0 14px;
+  padding:6px 26px;
+  margin-bottom:10px;
   border-radius:40px;
-  background:linear-gradient(135deg,#c71585,#ff4500,#ffd700);
-  border:2px solid #ffeb73;
-  box-shadow:0 0 22px #ff8c00;
+  background:linear-gradient(135deg,#c71585,#ff4500 50%,#ffd700);
+  box-shadow:0 4px 15px rgba(255,140,0,.6);
+  border:1.5px solid var(--light-gold);
 }
 
 .happy-diwali-text {
-  font-family:'Laila',sans-serif;
-  font-size:clamp(25px,6vw,36px);
+  font-family:'Laila','Noto Sans Devanagari',sans-serif;
+  font-size:clamp(1.4rem,5.5vw,2.2rem);
   font-weight:700;
+  text-align:center;
   white-space:nowrap;
+  color:#fff;
+  text-shadow:1px 1px 4px rgba(0,0,0,.5);
 }
+
+/* LAKSHMI IMAGE - ORIGINAL SIZE */
 
 .laxmi-image-wrapper {
   width:100%;
   display:flex;
   justify-content:center;
+  align-items:center;
+  padding:0;
+  border:none;
+  background:transparent;
+  box-shadow:none;
 }
 
 .festive-img {
@@ -121,114 +186,286 @@ body {
   width:100%;
   max-width:280px;
   max-height:170px;
+  max-height:min(170px,24vh);
+  min-height:60px;
+  height:auto;
   object-fit:contain;
   border-radius:12px;
-  border:2px solid var(--gold);
-  box-shadow:0 0 25px #ffd700;
-  animation:pulse 3s infinite;
+  border:2px solid var(--warm-gold);
+  box-shadow:0 4px 22px rgba(255,215,0,.6);
+  animation:softPulse 3s infinite ease-in-out;
 }
 
-@keyframes pulse {
+@keyframes softPulse {
+  0%,100% {transform:scale(1);}
   50% {transform:scale(1.04);}
 }
 
-.greeting-box,.controls-section {
+.img-fallback {
+  display:none;
+  font-size:90px;
+  line-height:1;
+  filter:drop-shadow(0 0 16px rgba(255,215,0,.8));
+  animation:softPulse 3s infinite;
+}
+
+/* GREETING BOX */
+
+.greeting-box {
   width:100%;
-  padding:12px;
-  background:rgba(0,0,0,.7);
-  border:1.5px solid var(--gold);
-  border-radius:14px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(0,0,0,.65);
+  border:1.5px solid var(--warm-gold);
   text-align:center;
-  box-shadow:0 0 15px #ffd70033;
+  margin:6px 0;
+  box-shadow:0 0 12px rgba(255,215,0,.25);
 }
 
 .greeting-text {
-  font-size:clamp(16px,4vw,20px);
-  line-height:1.6;
+  font-size:clamp(.95rem,3.8vw,1.2rem);
+  line-height:1.5;
+  font-weight:600;
+  color:#fffdf5;
+  word-wrap:break-word;
 }
 
 #display-name {
+  display:inline-block;
   font-weight:800;
-  color:var(--gold);
-  animation:nameColor 5s linear infinite;
+  color:var(--warm-gold);
+  text-shadow:0 0 8px rgba(255,215,0,.5);
+  animation:rgbText 5s linear infinite;
 }
 
-@keyframes nameColor {
-  0% {color:#ff3030;}
-  25% {color:#ffff00;}
-  50% {color:#00ff99;}
-  75% {color:#00ccff;}
-  100% {color:#ff30c0;}
+@keyframes rgbText {
+  0% {color:hsl(0,100%,62%);}
+  17% {color:hsl(60,100%,58%);}
+  33% {color:hsl(120,100%,58%);}
+  50% {color:hsl(180,100%,58%);}
+  67% {color:hsl(240,100%,68%);}
+  83% {color:hsl(300,100%,66%);}
+  100% {color:hsl(360,100%,62%);}
 }
+
+/* CONTROLS */
 
 .controls-section {
+  width:100%;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:8px;
+  background:rgba(0,0,0,.65);
+  padding:10px 14px;
+  border-radius:12px;
+  margin-bottom:4px;
+  border:1.5px solid var(--warm-gold);
+  box-shadow:0 0 12px rgba(255,215,0,.25);
 }
 
 .neon-input {
   width:100%;
-  padding:12px;
-  border:2px solid var(--orange);
-  border-radius:9px;
-  background:#240000;
-  color:white;
+  background:rgba(30,0,0,.85);
+  color:#fff;
+  border:1.5px solid var(--warm-orange);
+  border-radius:8px;
+  padding:9px 12px;
   font-size:16px;
-  font-family:inherit;
   outline:none;
   user-select:text;
+  -webkit-user-select:text;
+  transition:all .3s ease;
+  font-family:inherit;
+  animation:rgbText 5s linear infinite;
+  caret-color:white;
+  font-weight:700;
 }
 
 .neon-input:focus {
-  border-color:var(--gold);
-  box-shadow:0 0 12px var(--gold);
+  border-color:var(--warm-gold);
+  box-shadow:0 0 8px rgba(255,215,0,.6);
 }
 
-.gift-img-btn,.wa-img-btn {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
-  text-decoration:none;
+.neon-input::placeholder {
+  color:#d5baba;
+}
+
+/* OLD AMAZON IMAGE BUTTON */
+
+.gift-img-btn {
   position:relative;
-}
-
-.gift-img-btn img,.wa-img-btn img {
-  max-width:100%;
-  max-height:84px;
-  object-fit:contain;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  overflow:hidden;
+  border-radius:40px;
+  text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .gift-img-btn img {
-  animation:pulse 2s infinite;
+  display:block;
+  width:auto;
+  max-width:100%;
+  max-height:84px;
+  object-fit:contain;
+  pointer-events:none;
 }
 
-.wa-img-btn img {
-  animation:pulse 2.8s infinite;
+.gift-img-btn .shine {
+  position:absolute;
+  top:0;
+  left:0;
+  width:40%;
+  height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:translateX(-150%) skewX(-20deg);
+  animation:shineSweep 3.2s infinite ease-in-out;
+  pointer-events:none;
 }
 
-.text-btn {
-  width:100%;
-  min-height:52px;
-  border-radius:40px;
+@keyframes shineSweep {
+  0%,55% {transform:translateX(-150%) skewX(-20deg);}
+  100% {transform:translateX(325%) skewX(-20deg);}
+}
+
+.gift-img-btn .spark {
+  position:absolute;
+  font-size:14px;
+  opacity:0;
+  animation:twinkle 2.4s infinite ease-in-out;
+  pointer-events:none;
+}
+
+.gift-img-btn .s1 {top:8%;left:22%;}
+.gift-img-btn .s2 {top:55%;left:48%;animation-delay:.8s;}
+.gift-img-btn .s3 {top:12%;right:20%;animation-delay:1.6s;}
+
+@keyframes twinkle {
+  0%,100% {opacity:0;transform:scale(.4);}
+  50% {opacity:1;transform:scale(1.3);}
+}
+
+/* OLD WHATSAPP IMAGE BUTTON */
+
+.wa-img-btn {
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:800;
+  width:100%;
   text-decoration:none;
-  color:white;
-  font-size:17px;
-  border:1px solid white;
+  -webkit-tap-highlight-color:transparent;
 }
 
-.amazon-fallback {
-  background:linear-gradient(135deg,#ff8c00,#c71585);
+.wa-wrap {
+  position:relative;
+  isolation:isolate;
+  display:inline-block;
+  max-width:100%;
+  line-height:0;
 }
 
-.wa-fallback {
-  background:linear-gradient(135deg,#25d366,#128c7e);
+.wa-wrap img {
+  display:block;
+  width:auto;
+  max-width:100%;
+  max-height:84px;
+  object-fit:contain;
+  pointer-events:none;
+  animation:waBounce 2.8s infinite ease-in-out;
 }
+
+.wa-wrap::before {
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:40px;
+  z-index:-1;
+  box-shadow:0 0 16px 5px rgba(37,211,102,.85);
+  opacity:.3;
+  animation:waGlowOp 3s infinite ease-in-out;
+  pointer-events:none;
+}
+
+@keyframes waGlowOp {
+  0%,100% {opacity:.25;}
+  50% {opacity:1;}
+}
+
+@keyframes waBounce {
+  0%,100% {transform:translateY(0) scale(1);}
+  50% {transform:translateY(-2px) scale(1.025);}
+}
+
+/* WHATSAPP SHINE */
+
+.wa-clip {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:40px;
+  pointer-events:none;
+}
+
+.wa-clip .wa-shine {
+  position:absolute;
+  top:0;
+  left:0;
+  width:35%;
+  height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:translateX(-171%) skewX(-20deg);
+  animation:waShine 3s infinite ease-in-out;
+}
+
+@keyframes waShine {
+  0%,60% {transform:translateX(-171%) skewX(-20deg);}
+  100% {transform:translateX(371%) skewX(-20deg);}
+}
+
+/* WHATSAPP SPARKLES */
+
+.wa-spark {
+  position:absolute;
+  color:var(--warm-gold);
+  font-size:13px;
+  line-height:1;
+  opacity:0;
+  text-shadow:0 0 6px rgba(255,215,0,.9);
+  animation:waTwinkle 5s infinite ease-in-out;
+  pointer-events:none;
+}
+
+.wa-spark.k1 {top:-6px;left:12%;}
+.wa-spark.k2 {top:-8px;right:14%;animation-delay:1.7s;}
+.wa-spark.k3 {bottom:-6px;left:28%;animation-delay:3.1s;}
+.wa-spark.k4 {bottom:-7px;right:24%;animation-delay:.9s;}
+.wa-spark.k5 {top:38%;left:-7px;animation-delay:2.4s;}
+.wa-spark.k6 {top:42%;right:-7px;animation-delay:4s;}
+
+@keyframes waTwinkle {
+  0%,70%,100% {opacity:0;transform:scale(.3) rotate(0deg);}
+  80% {opacity:1;transform:scale(1.2) rotate(20deg);}
+  90% {opacity:.4;transform:scale(.8) rotate(40deg);}
+}
+
+/* WHATSAPP TAP BURST */
+
+.wa-burst {
+  position:absolute;
+  font-size:16px;
+  pointer-events:none;
+  z-index:5;
+  animation:waBurst .75s ease-out forwards;
+}
+
+@keyframes waBurst {
+  0% {opacity:1;transform:translate(0,0) scale(.6);}
+  100% {opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.3);}
+}
+
+/* FIXED BOTTOM BANNER AD */
 
 .adsterra-bottom-slot {
   position:fixed;
@@ -236,39 +473,31 @@ body {
   left:0;
   width:100%;
   height:60px;
+  text-align:center;
   z-index:9999;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:rgba(0,0,0,.85);
+  background:#000;
+  overflow:hidden;
 }
 
 .adsterra-bottom-slot iframe {
   max-width:100%;
 }
 
-@media(max-height:650px) {
+@media(max-width:360px) {
   #celebration-screen {
-    justify-content:flex-start;
-    gap:8px;
+    padding-left:10px;
+    padding-right:10px;
   }
+
   .festive-img {
-    max-height:110px;
-  }
-  .happy-diwali-banner {
-    margin:3px 0 7px;
+    max-width:260px;
   }
 }
+
 </style>
-
-<!-- POPUNDER AD -->
-<script data-cfasync="false"
-src="https://afders.org/1/941948f6e99c104a0c4b6e9b5d510d91"></script>
-
-<!-- SOCIAL BAR AD -->
-<script data-cfasync="false"
-src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
-
 </head>
 
 <body>
@@ -278,31 +507,39 @@ src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
 
 <main id="celebration-screen">
 
+  <!-- TOP HERO -->
   <div class="top-hero-section">
 
     <div class="happy-diwali-banner">
-      <div class="happy-diwali-text">शुभ दीपावली 🪔</div>
+      <div class="happy-diwali-text">शुभ दीपावली</div>
     </div>
 
     <div class="laxmi-image-wrapper">
+
       <img
+        id="laxmi-img"
         src="https://i.ibb.co/vx9K98Zv/laxmi.gif"
         class="festive-img"
         alt="माता लक्ष्मी"
-        onerror="this.style.display='none';document.getElementById('fallback').style.display='block';"
       >
-      <div id="fallback" style="display:none;font-size:90px">🪔</div>
+
+      <div id="img-fallback" class="img-fallback">🪔</div>
+
     </div>
 
   </div>
 
+  <!-- GREETING -->
   <div class="greeting-box">
+
     <p class="greeting-text">
       <span id="display-name">आपका नाम</span> की ओर से:<br>
       आपको दीपावली की बहुत-बहुत बधाई। 🎉
     </p>
+
   </div>
 
+  <!-- BUTTONS -->
   <div class="controls-section">
 
     <input
@@ -314,31 +551,67 @@ src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
       autocomplete="off"
     >
 
-    <!-- AMAZON AFFILIATE LINK: अपना असली लिंक डालें -->
+    <!-- AMAZON AFFILIATE LINK -->
     <a
       href="YOUR_AFFILIATE_LINK"
       id="gift-btn"
-      class="text-btn amazon-fallback"
+      class="gift-img-btn"
       target="_blank"
       rel="noopener"
+      aria-label="दिवाली शॉपिंग धमाका"
     >
-      🧨 दिवाली शॉपिंग धमाका 🧨
+
+      <img
+        id="gift-img"
+        src="https://i.ibb.co/6RDHwyDb/diwali-pnh.png"
+        alt="दिवाली शॉपिंग धमाका"
+      >
+
+      <span class="shine"></span>
+      <span class="spark s1">✨</span>
+      <span class="spark s2">✨</span>
+      <span class="spark s3">✨</span>
+
     </a>
 
-    <!-- WHATSAPP SHARE -->
+    <!-- WHATSAPP SHARE BUTTON -->
     <a
       href="#"
+      target="_top"
       id="whatsapp-share-btn"
-      class="text-btn wa-fallback"
+      class="wa-img-btn"
+      aria-label="WhatsApp पर शेयर करें"
     >
-      💚 WhatsApp पर शेयर करें
+
+      <span class="wa-wrap" id="wa-wrap">
+
+        <img
+          id="wa-img"
+          src="https://i.ibb.co/8D7Nyk9G/file-00000000af548211bd75b445daf5fcc9-removebg-preview.png"
+          alt="WhatsApp पर शेयर करें"
+        >
+
+        <span class="wa-clip">
+          <span class="wa-shine"></span>
+        </span>
+
+        <span class="wa-spark k1">✦</span>
+        <span class="wa-spark k2">✦</span>
+        <span class="wa-spark k3">✦</span>
+        <span class="wa-spark k4">✦</span>
+        <span class="wa-spark k5">✦</span>
+        <span class="wa-spark k6">✦</span>
+
+      </span>
+
     </a>
 
   </div>
 
 </main>
 
-<!-- FIXED BOTTOM BANNER AD 320x50 -->
+<!-- ADSTERRA BANNER 320x50 -->
+
 <div class="adsterra-bottom-slot">
 
   <script>
@@ -356,42 +629,62 @@ src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
 </div>
 
 <script>
+
+/* ==================================
+   NAME + WHATSAPP SHARE
+================================== */
+
 (function(){
 
   var input = document.getElementById('name-input');
   var display = document.getElementById('display-name');
   var wa = document.getElementById('whatsapp-share-btn');
+  var waWrap = document.getElementById('wa-wrap');
 
   function cleanName(value) {
     return value.replace(/^\s+|\s+$/g,'');
   }
 
+  /* NAME INPUT */
+
   input.addEventListener('input',function(){
-    display.textContent = cleanName(input.value) || 'आपका नाम';
+
+    display.textContent =
+      cleanName(input.value) || 'आपका नाम';
+
   });
 
-  // URL se naam lena
+  /* GET NAME FROM URL */
+
   var params = new URLSearchParams(location.search);
   var sharedName = params.get('name');
 
   if(sharedName) {
+
     input.value = sharedName;
     display.textContent = sharedName;
+
   }
 
+  /* WHATSAPP SHARE */
+
   wa.addEventListener('click',function(e){
+
     e.preventDefault();
 
     var name = cleanName(input.value);
 
     if(!name) {
+
       input.focus();
       alert('पहले अपना नाम लिखें!');
       return;
+
     }
 
-    var base = 'https://diwaliloot.vercel.app/';
-    var shareURL = base + '?name=' + encodeURIComponent(name);
+    var shareURL =
+      'https://diwaliloot.vercel.app/?name=' +
+      encodeURIComponent(name);
 
     var message =
       '🚨 जल्दी देखो! 🚨\n\n' +
@@ -399,27 +692,98 @@ src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
       ' ने आपके लिए दिवाली का एक बहुत ही सीक्रेट गिफ्ट भेजा है 🎁👇\n\n' +
       'यहाँ क्लिक करें 👉 ' + shareURL;
 
-    location.href = 'https://wa.me/?text=' +
-      encodeURIComponent(message);
+    /* TAP SPARKLE EFFECT */
+
+    var emojis = ['✨','🎆','⭐','🎇'];
+
+    for(var i=0;i<4;i++){
+
+      var spark = document.createElement('span');
+
+      spark.className = 'wa-burst';
+      spark.textContent = emojis[i];
+
+      spark.style.left = (15 + Math.random()*70) + '%';
+      spark.style.top = (Math.random()*100) + '%';
+      spark.style.setProperty('--dx',(Math.random()*100-50)+'px');
+      spark.style.setProperty('--dy',(Math.random()*-100)+'px');
+
+      waWrap.appendChild(spark);
+
+      setTimeout(function(s){
+        return function(){
+          if(s.parentNode) s.parentNode.removeChild(s);
+        };
+      }(spark),800);
+
+    }
+
+    setTimeout(function(){
+
+      location.href =
+        'https://wa.me/?text=' +
+        encodeURIComponent(message);
+
+    },150);
+
   });
 
-  // Falling Diwali decorations
+})();
+
+/* ==================================
+   LAKSHMI IMAGE FALLBACK
+================================== */
+
+(function(){
+
+  var img = document.getElementById('laxmi-img');
+  var fallback = document.getElementById('img-fallback');
+
+  img.onerror = function(){
+
+    img.style.display = 'none';
+    fallback.style.display = 'block';
+
+  };
+
+})();
+
+/* ==================================
+   FALLING DIWALI CRACKERS
+================================== */
+
+(function(){
+
   var container = document.getElementById('crackers');
+
   var items = ['✨','🪔','🎆','⭐','🎇'];
 
   for(var i=0;i<18;i++){
+
     var el = document.createElement('span');
+
     el.className = 'cracker';
     el.textContent = items[i % items.length];
+
     el.style.left = Math.random()*100 + '%';
-    el.style.animationDuration = (7+Math.random()*9)+'s';
-    el.style.animationDelay = (-Math.random()*12)+'s';
-    el.style.fontSize = (13+Math.random()*15)+'px';
+
+    el.style.animationDuration =
+      (7 + Math.random()*9) + 's';
+
+    el.style.animationDelay =
+      (-Math.random()*12) + 's';
+
+    el.style.fontSize =
+      (13 + Math.random()*15) + 'px';
+
     container.appendChild(el);
+
   }
 
 })();
+
 </script>
 
 </body>
-</html>
+  </html>
+  
