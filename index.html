@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -21,18 +20,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Laila:wght@600;700&family=Noto+Sans+Devanagari:wght@500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
-<!-- ========================= -->
 <!-- ADSTERRA POPUNDER AD -->
-<!-- ========================= -->
 <script data-cfasync="false" src="https://afders.org/1/941948f6e99c104a0c4b6e9b5d510d91"></script>
 
-<!-- ========================= -->
 <!-- ADSTERRA SOCIAL BAR AD -->
-<!-- ========================= -->
 <script data-cfasync="false" src="https://bicea.org/14/5d26c02d1c48f9fad7f0191234252007"></script>
 
 <style>
-
 :root {
   --bg-deep-maroon:#4a0404;
   --bg-dark-red:#1f0101;
@@ -63,7 +57,6 @@ body {
 }
 
 /* RGB BACKGROUND */
-
 #rgb-bg {
   position:fixed;
   inset:0;
@@ -98,7 +91,6 @@ body {
 }
 
 /* FALLING CRACKERS */
-
 #crackers {
   position:fixed;
   inset:0;
@@ -121,7 +113,6 @@ body {
 }
 
 /* MAIN SCREEN */
-
 #celebration-screen {
   position:relative;
   z-index:10;
@@ -139,7 +130,6 @@ body {
 }
 
 /* TOP SECTION */
-
 .top-hero-section {
   width:100%;
   display:flex;
@@ -168,8 +158,7 @@ body {
   text-shadow:1px 1px 4px rgba(0,0,0,.5);
 }
 
-/* LAKSHMI IMAGE - ORIGINAL SIZE */
-
+/* LAKSHMI IMAGE */
 .laxmi-image-wrapper {
   width:100%;
   display:flex;
@@ -185,7 +174,6 @@ body {
   display:block;
   width:100%;
   max-width:280px;
-  max-height:170px;
   max-height:min(170px,24vh);
   min-height:60px;
   height:auto;
@@ -210,7 +198,6 @@ body {
 }
 
 /* GREETING BOX */
-
 .greeting-box {
   width:100%;
   padding:10px 14px;
@@ -249,7 +236,6 @@ body {
 }
 
 /* CONTROLS */
-
 .controls-section {
   width:100%;
   display:flex;
@@ -290,8 +276,7 @@ body {
   color:#d5baba;
 }
 
-/* OLD AMAZON IMAGE BUTTON */
-
+/* MEESHO SHOPPING BUTTON */
 .gift-img-btn {
   position:relative;
   display:flex;
@@ -347,8 +332,7 @@ body {
   50% {opacity:1;transform:scale(1.3);}
 }
 
-/* OLD WHATSAPP IMAGE BUTTON */
-
+/* WHATSAPP BUTTON */
 .wa-img-btn {
   display:flex;
   align-items:center;
@@ -399,7 +383,6 @@ body {
 }
 
 /* WHATSAPP SHINE */
-
 .wa-clip {
   position:absolute;
   inset:0;
@@ -425,7 +408,6 @@ body {
 }
 
 /* WHATSAPP SPARKLES */
-
 .wa-spark {
   position:absolute;
   color:var(--warm-gold);
@@ -451,7 +433,6 @@ body {
 }
 
 /* WHATSAPP TAP BURST */
-
 .wa-burst {
   position:absolute;
   font-size:16px;
@@ -466,7 +447,6 @@ body {
 }
 
 /* FIXED BOTTOM BANNER AD */
-
 .adsterra-bottom-slot {
   position:fixed;
   bottom:0;
@@ -496,7 +476,6 @@ body {
     max-width:260px;
   }
 }
-
 </style>
 </head>
 
@@ -551,14 +530,14 @@ body {
       autocomplete="off"
     >
 
-    <!-- AMAZON AFFILIATE LINK -->
+    <!-- MEESHO AFFILIATE LINK -->
     <a
-      href="YOUR_AFFILIATE_LINK"
+      href="https://www.meesho.com/af_invite/612722902:instagram_stories:15552782?p_id=1134988972&amp;ext_id=irqr3g&amp;utm_source=instagram_stories"
       id="gift-btn"
       class="gift-img-btn"
       target="_blank"
-      rel="noopener"
-      aria-label="दिवाली शॉपिंग धमाका"
+      rel="noopener noreferrer"
+      aria-label="दिवाली शॉपिंग धमाका - Meesho"
     >
 
       <img
@@ -611,7 +590,6 @@ body {
 </main>
 
 <!-- ADSTERRA BANNER 320x50 -->
-
 <div class="adsterra-bottom-slot">
 
   <script>
@@ -630,10 +608,7 @@ body {
 
 <script>
 
-/* ==================================
-   NAME + WHATSAPP SHARE
-================================== */
-
+/* NAME + WHATSAPP SHARE */
 (function(){
 
   var input = document.getElementById('name-input');
@@ -646,7 +621,6 @@ body {
   }
 
   /* NAME INPUT */
-
   input.addEventListener('input',function(){
 
     display.textContent =
@@ -655,7 +629,6 @@ body {
   });
 
   /* GET NAME FROM URL */
-
   var params = new URLSearchParams(location.search);
   var sharedName = params.get('name');
 
@@ -667,7 +640,6 @@ body {
   }
 
   /* WHATSAPP SHARE */
-
   wa.addEventListener('click',function(e){
 
     e.preventDefault();
@@ -693,7 +665,6 @@ body {
       'यहाँ क्लिक करें 👉 ' + shareURL;
 
     /* TAP SPARKLE EFFECT */
-
     var emojis = ['✨','🎆','⭐','🎇'];
 
     for(var i=0;i<4;i++){
@@ -730,10 +701,7 @@ body {
 
 })();
 
-/* ==================================
-   LAKSHMI IMAGE FALLBACK
-================================== */
-
+/* LAKSHMI IMAGE FALLBACK */
 (function(){
 
   var img = document.getElementById('laxmi-img');
@@ -748,10 +716,7 @@ body {
 
 })();
 
-/* ==================================
-   FALLING DIWALI CRACKERS
-================================== */
-
+/* FALLING DIWALI CRACKERS */
 (function(){
 
   var container = document.getElementById('crackers');
@@ -786,4 +751,3 @@ body {
 
 </body>
   </html>
-  
